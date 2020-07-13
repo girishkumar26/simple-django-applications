@@ -6,13 +6,36 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return render(request, 'home.html', {'name': 'Girish Kumar S'})
+    return render(request, 'home.html', {'name': 'basics without css'})
 
 
 def add(request):
-    val1 = request.GET['num1']
-    val2 = request.GET['num2']
-    print(val2)
+    val1 = int(request.GET['num1'])
+    val2 = int(request.GET['num2'])
+    res = 0
 
-    res = val1 + val2
+    try:
+        if 'on' in request.GET['sum']:
+            res = val1 + val2
+    except Exception as e:
+        pass
+
+    try:
+        if 'on' in request.GET['sub']:
+            res = val1 - val2
+    except Exception as e:
+        pass
+
+    try:
+        if 'on' in request.GET['mul']:
+            res = val1 * val2
+    except Exception as e:
+        pass
+
+    try:
+        if 'on' in request.GET['div']:
+            res = val1 / val2
+    except Exception as e:
+        pass
+
     return render(request, 'home.html', {'result': res})
